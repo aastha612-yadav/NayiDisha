@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import API from '../api/axios';
 import { useAuth } from '../context/AuthContext';
@@ -10,19 +10,21 @@ export default function Jobs() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
- const fetchJobs = async () => {
-    const res = await API.get('/jobs', { params: { search, category } });
-    setJobs(Array.isArray(res.data) ? res.data : []);
-  };
-  
-  useEffect(() => { fetchJobs(); }, []);
+ const fetchJobs = useCallback(async () => {
+  const res = await API.get('/jobs', { params: { search, category } });
+  setJobs(Array.isArray(res.data) ? res.data : []);
+}, [search, category]);
+
+useEffect(() => {
+  fetchJobs();
+}, [fetchJobs]);
 
   const handleLogout = () => { logout(); navigate('/login'); };
 
   return (
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2>🌟 NayiDisha Jobs</h2>
+        <h2> NayiDisha </h2>
         <div>
           {user ? (
             <>

@@ -23,7 +23,7 @@ export default function Login() {
 
   return (
     <div className="container mt-5" style={{ maxWidth: 450 }}>
-      <h2 className="mb-4 text-center">Login to NayiDisha</h2>
+      <h2 className="mb-4 text-center"> NayiDisha</h2>
       {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
