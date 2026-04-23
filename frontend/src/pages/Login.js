@@ -6,11 +6,13 @@ import { useAuth } from '../context/AuthContext';
 export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await API.post('/auth/login', form);
       login(res.data.user, res.data.token);
@@ -19,26 +21,35 @@ export default function Login() {
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     }
+    setLoading(false);
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: 450 }}>
-      <h2 className="mb-4 text-center"> NayiDisha</h2>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label>Email</label>
-          <input type="email" className="form-control" value={form.email}
-            onChange={e => setForm({ ...form, email: e.target.value })} required />
+    <div style={{ minHeight: '100vh', background: '#f0f4ff' }} className="d-flex align-items-center justify-content-center">
+      <div className="card shadow p-4" style={{ maxWidth: 420, width: '100%' }}>
+        <div className="text-center mb-4">
+          <h2>🌟 NayiDisha</h2>
+          <p className="text-muted">Login to your account</p>
         </div>
-        <div className="mb-3">
-          <label>Password</label>
-          <input type="password" className="form-control" value={form.password}
-            onChange={e => setForm({ ...form, password: e.target.value })} required />
-        </div>
-        <button className="btn btn-primary w-100">Login</button>
-      </form>
-      <p className="mt-3 text-center">No account? <Link to="/register">Register</Link></p>
+        {error && <div className="alert alert-danger">{error}</div>}
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label fw-bold">Email</label>
+            <input type="email" className="form-control" placeholder="Enter your email"
+              value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} required />
+          </div>
+          <div className="mb-3">
+            <label className="form-label fw-bold">Password</label>
+            <input type="password" className="form-control" placeholder="Enter your password"
+              value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} required />
+          </div>
+          <button className="btn btn-primary w-100 mt-2" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
+        </form>
+        <hr />
+        <p className="text-center mb-0">No account? <Link to="/register">Register here</Link></p>
+      </div>
     </div>
   );
 }

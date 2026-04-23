@@ -5,49 +5,72 @@ import API from '../api/axios';
 export default function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '', role: 'seeker' });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await API.post('/auth/register', form);
       navigate('/login');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
     }
+    setLoading(false);
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: 450 }}>
-      <h2 className="mb-4 text-center">NayiDisha</h2>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label>Full Name</label>
-          <input className="form-control" value={form.name}
-            onChange={e => setForm({ ...form, name: e.target.value })} required />
+    <div style={{ minHeight: '100vh', background: '#f0f4ff' }} className="d-flex align-items-center justify-content-center">
+      <div className="card shadow p-4" style={{ maxWidth: 420, width: '100%' }}>
+        <div className="text-center mb-4">
+          <h2>🌟 NayiDisha</h2>
+          <p className="text-muted">Create your account</p>
         </div>
-        <div className="mb-3">
-          <label>Email</label>
-          <input type="email" className="form-control" value={form.email}
-            onChange={e => setForm({ ...form, email: e.target.value })} required />
+
+        {/* Role selector */}
+        <div className="d-flex mb-4 gap-2">
+          <button
+            type="button"
+            className={`btn w-50 ${form.role === 'seeker' ? 'btn-primary' : 'btn-outline-primary'}`}
+            onClick={() => setForm({ ...form, role: 'seeker' })}>
+            👤 Job Seeker
+          </button>
+          <button
+            type="button"
+            className={`btn w-50 ${form.role === 'employer' ? 'btn-success' : 'btn-outline-success'}`}
+            onClick={() => setForm({ ...form, role: 'employer' })}>
+            🏢 Employer
+          </button>
         </div>
-        <div className="mb-3">
-          <label>Password</label>
-          <input type="password" className="form-control" value={form.password}
-            onChange={e => setForm({ ...form, password: e.target.value })} required />
-        </div>
-        <div className="mb-3">
-          <label>I am a</label>
-          <select className="form-control" value={form.role}
-            onChange={e => setForm({ ...form, role: e.target.value })}>
-            <option value="seeker">Job Seeker</option>
-            <option value="employer">Employer</option>
-          </select>
-        </div>
-        <button className="btn btn-primary w-100">Register</button>
-      </form>
-      <p className="mt-3 text-center">Already have an account? <Link to="/login">Login</Link></p>
+
+        {error && <div className="alert alert-danger">{error}</div>}
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label fw-bold">Full Name</label>
+            <input className="form-control" placeholder="Enter your full name"
+              value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required />
+          </div>
+          <div className="mb-3">
+            <label className="form-label fw-bold">Email</label>
+            <input type="email" className="form-control" placeholder="Enter your email"
+              value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} required />
+          </div>
+          <div className="mb-3">
+            <label className="form-label fw-bold">Password</label>
+            <input type="password" className="form-control" placeholder="Create a password"
+              value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} required />
+          </div>
+          <div className="alert alert-info py-2">
+            Registering as: <strong>{form.role === 'seeker' ? '👤 Job Seeker' : '🏢 Employer'}</strong>
+          </div>
+          <button className="btn btn-primary w-100" disabled={loading}>
+            {loading ? 'Registering...' : 'Create Account'}
+          </button>
+        </form>
+        <hr />
+        <p className="text-center mb-0">Already have an account? <Link to="/login">Login here</Link></p>
+      </div>
     </div>
   );
 }
