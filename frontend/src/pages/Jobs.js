@@ -15,6 +15,7 @@ export default function Jobs() {
     setJobs(res.data);
   };
 
+  // eslint-disable-next-line
   useEffect(() => { fetchJobs(); }, []);
 
   const handleLogout = () => { logout(); navigate('/login'); };
