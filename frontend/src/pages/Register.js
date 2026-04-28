@@ -24,7 +24,7 @@ export default function Register() {
     <div style={{ minHeight: '100vh', background: '#f0f4ff' }} className="d-flex align-items-center justify-content-center">
       <div className="card shadow p-4" style={{ maxWidth: 420, width: '100%' }}>
         <div className="text-center mb-4">
-          <h2>🌟 NayiDisha</h2>
+          <h2> NayiDisha</h2>
           <p className="text-muted">Create your account</p>
         </div>
 

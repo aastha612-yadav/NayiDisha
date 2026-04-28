@@ -13,7 +13,7 @@ export default function Returnship() {
     <div className="container mt-4">
       <div className="d-flex justify-content-between mb-4">
         <div>
-          <h2>👩‍💼 Women Returnship Programs</h2>
+          <h2> Women Returnship Programs</h2>
           <p className="text-muted">Special opportunities for women returning after a career break</p>
         </div>
         <Link to="/jobs" className="btn btn-outline-secondary">← Back to Jobs</Link>

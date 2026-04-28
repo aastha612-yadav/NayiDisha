@@ -28,7 +28,7 @@ export default function Login() {
     <div style={{ minHeight: '100vh', background: '#f0f4ff' }} className="d-flex align-items-center justify-content-center">
       <div className="card shadow p-4" style={{ maxWidth: 420, width: '100%' }}>
         <div className="text-center mb-4">
-          <h2>🌟 NayiDisha</h2>
+          <h2> NayiDisha</h2>
           <p className="text-muted">Login to your account</p>
         </div>
         {error && <div className="alert alert-danger">{error}</div>}
