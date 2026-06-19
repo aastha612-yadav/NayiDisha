@@ -7,6 +7,7 @@ import JobDetail from './pages/JobDetail';
 import EmployerDashboard from './pages/EmployerDashboard';
 import MyApplications from './pages/MyApplications';
 import Returnship from './pages/Returnship';
+import ResumeBuilder from './pages/ResumeBuilder';
 
 const PrivateRoute = ({ children, role }) => {
   const { user } = useAuth();
@@ -26,6 +27,7 @@ function App() {
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/jobs/:id" element={<JobDetail />} />
           <Route path="/returnship" element={<Returnship />} />
+          <Route path="/resume-builder" element={<ResumeBuilder />} />
           <Route path="/my-applications" element={
             <PrivateRoute role="seeker"><MyApplications /></PrivateRoute>
           } />

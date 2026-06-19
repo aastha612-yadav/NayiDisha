@@ -35,6 +35,7 @@ export default function Jobs() {
               {user.role === 'seeker' && <Link to="/my-applications" className="btn btn-outline-primary btn-sm">My Applications</Link>}
               {user.role === 'employer' && <Link to="/employer/dashboard" className="btn btn-outline-primary btn-sm">Dashboard</Link>}
               <Link to="/returnship" className="btn btn-outline-success btn-sm">Returnship</Link>
+              {user.role === 'seeker' && <Link to="/resume-builder" className="btn btn-outline-warning btn-sm"> Resume Builder</Link>}
               <button className="btn btn-outline-danger btn-sm" onClick={handleLogout}>Logout</button>
             </>
           ) : (
