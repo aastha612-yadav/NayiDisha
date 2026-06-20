@@ -27,7 +27,7 @@ export default function Jobs() {
     <div style={{ background: '#f0f4ff', minHeight: '100vh' }}>
       {/* Navbar */}
       <nav className="navbar navbar-light bg-white shadow-sm px-4">
-        <span className="navbar-brand fw-bold fs-4">🌟 NayiDisha</span>
+        <span className="navbar-brand fw-bold fs-4"> NayiDisha</span>
         <div className="d-flex align-items-center gap-2">
           {user ? (
             <>

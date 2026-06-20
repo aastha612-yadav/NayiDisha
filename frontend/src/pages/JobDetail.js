@@ -68,7 +68,7 @@ export default function JobDetail() {
 
       {user?.role === 'seeker' && (
         <div className="card mb-3 p-3 bg-light border-0">
-          <label className="form-label mb-2">✨ Check how well you match this role</label>
+          <label className="form-label mb-2"> Check how well you match this role</label>
           <div className="input-group mb-2">
             <input
               type="text"

@@ -34,7 +34,7 @@ export default function ResumeBuilder() {
 
   return (
     <div className="container mt-5" style={{ maxWidth: 700 }}>
-      <h2>✨ AI Resume Builder</h2>
+      <h2> AI Resume Builder</h2>
       <p className="text-muted">
         Type your role, skills, and a few achievements in your own words — we'll turn it into polished resume content.
       </p>

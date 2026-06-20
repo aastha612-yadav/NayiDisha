@@ -20,7 +20,7 @@ export default function Returnship() {
       </div>
 
       <div className="alert alert-success">
-        🌟 These programs offer flexible hours, mentorship, and supportive environments for women re-entering the workforce.
+         These programs offer flexible hours, mentorship, and supportive environments for women re-entering the workforce.
       </div>
 
       <div className="row">
