@@ -67,8 +67,8 @@ export default function JobDetail() {
       <p>{job.description}</p>
 
       {user?.role === 'seeker' && (
-        <div className="card mb-3 p-3 bg-light border-0">
-          <label className="form-label mb-2"> Check how well you match this role</label>
+        <div className="nd-ai-box mb-3">
+          <label className="form-label mb-2 fw-bold"> Check how well you match this role</label>
           <div className="input-group mb-2">
             <input
               type="text"
@@ -87,7 +87,7 @@ export default function JobDetail() {
             <div className="mt-2">
               <strong>{matchResult.score}% Match</strong>
               <div className="progress mb-2 mt-1" style={{ height: 8 }}>
-                <div className="progress-bar bg-primary" style={{ width: `${matchResult.score}%` }} />
+                <div className="progress-bar" style={{ width: `${matchResult.score}%`, backgroundColor: 'var(--nd-coral)' }} />
               </div>
               <ul className="mb-1 ps-3">
                 {matchResult.reasons?.map((r, i) => <li key={i}>{r}</li>)}

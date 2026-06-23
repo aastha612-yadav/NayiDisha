@@ -25,10 +25,16 @@ export default function Login() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f0f4ff' }} className="d-flex align-items-center justify-content-center">
+    <div style={{ minHeight: '100vh' }} className="nd-auth-page d-flex align-items-center justify-content-center">
       <div className="card shadow p-4" style={{ maxWidth: 420, width: '100%' }}>
         <div className="text-center mb-4">
-          <h2> NayiDisha</h2>
+          <div className="d-flex align-items-center justify-content-center gap-2 mb-2">
+            <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="14.5" stroke="var(--nd-coral)" strokeWidth="2"/>
+              <path d="M11 21L21 11M21 11H14M21 11V18" stroke="var(--nd-coral)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="nd-brand-text fs-4">NayiDisha</span>
+          </div>
           <p className="text-muted">Login to your account</p>
         </div>
         {error && <div className="alert alert-danger">{error}</div>}

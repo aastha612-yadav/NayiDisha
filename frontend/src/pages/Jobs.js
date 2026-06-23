@@ -3,6 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import API from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 
+const categoryIcons = {
+  IT: '💻',
+  Marketing: '📣',
+  Finance: '💰',
+  HR: '🧑‍💼',
+  Design: '🎨',
+};
+
 export default function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState('');
@@ -24,10 +32,15 @@ export default function Jobs() {
   const handleLogout = () => { logout(); navigate('/login'); };
 
   return (
-    <div style={{ background: '#f0f4ff', minHeight: '100vh' }}>
-      {/* Navbar */}
-      <nav className="navbar navbar-light bg-white shadow-sm px-4">
-        <span className="navbar-brand fw-bold fs-4"> NayiDisha</span>
+    <div style={{ background: 'var(--nd-bg)', minHeight: '100vh' }}>
+      <nav className="navbar navbar-dark nd-navbar shadow-sm px-4">
+        <span className="navbar-brand fs-4 d-flex align-items-center gap-2">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="14.5" stroke="var(--nd-coral)" strokeWidth="2"/>
+          <path d="M11 21L21 11M21 11H14M21 11V18" stroke="var(--nd-coral)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <span className="nd-brand-text">NayiDisha</span>
+      </span>
         <div className="d-flex align-items-center gap-2">
           {user ? (
             <>
@@ -35,7 +48,7 @@ export default function Jobs() {
               {user.role === 'seeker' && <Link to="/my-applications" className="btn btn-outline-primary btn-sm">My Applications</Link>}
               {user.role === 'employer' && <Link to="/employer/dashboard" className="btn btn-outline-primary btn-sm">Dashboard</Link>}
               <Link to="/returnship" className="btn btn-outline-success btn-sm">Returnship</Link>
-              {user.role === 'seeker' && <Link to="/resume-builder" className="btn btn-outline-warning btn-sm"> Resume Builder</Link>}
+              {user.role === 'seeker' && <Link to="/resume-builder" className="btn btn-outline-warning btn-sm">Resume Builder</Link>}
               <button className="btn btn-outline-danger btn-sm" onClick={handleLogout}>Logout</button>
             </>
           ) : (
@@ -48,7 +61,11 @@ export default function Jobs() {
       </nav>
 
       <div className="container mt-4">
-        {/* Filters */}
+        <div className="nd-hero">
+          <h1>Find work that fits your story</h1>
+          <p>Verified employers, transparent pay, and returnship-friendly roles for a fresh start.</p>
+        </div>
+
         <div className="card shadow-sm p-3 mb-4">
           <div className="row g-2">
             <div className="col-md-4">
@@ -82,7 +99,6 @@ export default function Jobs() {
           </div>
         </div>
 
-        {/* Job Cards */}
         <div className="row">
           {jobs.length === 0 && (
             <div className="text-center text-muted mt-5">
@@ -93,12 +109,13 @@ export default function Jobs() {
             <div className="col-md-4 mb-3" key={job.id}>
               <div className="card h-100 shadow-sm">
                 <div className="card-body">
+                  <div className="nd-icon-badge">{categoryIcons[job.category] || '💼'}</div>
                   <h5 className="card-title">{job.title}</h5>
                   <p className="text-muted mb-1">🏢 {job.employer_name}</p>
                   <p className="mb-1">📍 {job.location}</p>
                   <p className="mb-2">💰 {job.salary}</p>
                   <span className="badge bg-secondary me-1">{job.category}</span>
-                  {job.is_returnship ? <span className="badge bg-success">Returnship Friendly</span> : null}
+                  {!!job.is_returnship && <span className="badge bg-success">Returnship Friendly</span>}
                 </div>
                 <div className="card-footer bg-white">
                   <Link to={`/jobs/${job.id}`} className="btn btn-primary w-100">View & Apply</Link>

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
 const programs = [
-  { id: 1, title: 'Back to Work Program', org: 'TCS', type: 'Mentorship', skills: 'Java, Python, Leadership' },
-  { id: 2, title: 'Women in Tech Returnship', org: 'Infosys', type: 'Flexible Hours', skills: 'React, Node.js, SQL' },
-  { id: 3, title: 'Career Relaunch Program', org: 'Wipro', type: 'Part-time', skills: 'Data Analysis, Excel, Power BI' },
-  { id: 4, title: 'Rising Again Initiative', org: 'Accenture', type: 'Mentorship', skills: 'Project Management, Agile' },
-  { id: 5, title: 'FlexWork for Women', org: 'HCL', type: 'Remote Friendly', skills: 'Digital Marketing, SEO, Content' },
+  { id: 1, title: 'Rebegin', org: 'TCS', type: 'Mentorship', skills: 'Java, Python, Leadership' },
+  { id: 2, title: 'Restart with Infosys', org: 'Infosys', type: 'Flexible Hours', skills: 'React, Node.js, SQL' },
+  { id: 3, title: 'Begin Again', org: 'Wipro', type: 'Part-time', skills: 'Data Analysis, Excel, Power BI' },
+  { id: 4, title: 'Career Reboot Program', org: 'Accenture', type: 'Mentorship', skills: 'Project Management, Agile' },
+  { id: 5, title: 'HCLTech Returnship Program', org: 'HCL', type: 'Remote Friendly', skills: 'Digital Marketing, SEO, Content' },
 ];
 
 export default function Returnship() {
@@ -22,6 +22,9 @@ export default function Returnship() {
       <div className="alert alert-success">
          These programs offer flexible hours, mentorship, and supportive environments for women re-entering the workforce.
       </div>
+      <p className="text-muted" style={{ fontSize: '13px', marginTop: '-8px' }}>
+        Program names shown are real, publicly listed initiatives — included here for demonstration purposes only, not an active integration or partnership.
+      </p>
 
       <div className="row">
         {programs.map(p => (
